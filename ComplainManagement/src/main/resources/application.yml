@@ -1,0 +1,21 @@
+spring:
+    #Configuración de MySQL
+    datasource:
+        url: jdbc:mysql://localhost:3306/complains_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    #Configuración de Creación de Tablas (hibernate)
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    #Eliminamos el guardado de datos en cache de Thymeleaf
+    thymeleaf:
+        cache: false
+    #Seleccionamos el puerto de ejecución
+    server:
+        port: 8080
