@@ -3,12 +3,10 @@ package com.Complain.Management.controllers;
 import com.Complain.Management.entities.Complain;
 import com.Complain.Management.services.ComplainService;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +34,12 @@ public class ComplainController {
         model.addAttribute("complain", new Complain());
         return "form.html";
     }
+    
+    @RequestMapping(value = "/switch", method = RequestMethod.GET)
+    public String switchButton(@RequestParam String id, ModelMap model){
+        model.addAttribute("complain", useCService.oneComplain(id));
+        return "complains/list";
+    }
 
     /**
      * Método que carga los datos del formulario en mi DB.Calcula y setea el
@@ -47,6 +51,22 @@ public class ComplainController {
      */
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String submitData(@ModelAttribute Complain complain) {
+        useCService.saveComplain(complain);
+        return "redirect:/complain/list";
+    }
+    
+    @RequestMapping(value = "/switch", method = RequestMethod.POST)
+    public String saveSwitch(@RequestParam String id){
+        
+        Complain complain = useCService.oneComplain(id);
+        
+        System.out.println(complain.getSolved());
+        
+        if (complain.getSolved() || complain.getSolved() == null) {
+            complain.setSolved(Boolean.FALSE);
+        } else {
+            complain.setSolved(Boolean.TRUE);
+        }
         useCService.saveComplain(complain);
         return "redirect:/complain/list";
     }
@@ -70,6 +90,7 @@ public class ComplainController {
      * @param complain
      * @return
      */
+    /**
     @RequestMapping(value = "/switch", method = RequestMethod.POST)
         public String switchSolved(@ModelAttribute Complain complain) {
         
@@ -77,4 +98,5 @@ public class ComplainController {
             
         return "redirect:/complain/list";
     }
+    */
 }

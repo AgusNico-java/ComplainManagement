@@ -57,12 +57,14 @@
                     <td>
                         <span  th:if="${complain.solved}">
                             <form th:action="@{/complain/switch}" method="POST" th:object="${complain}">
-                                <input type="submit" name="id" value="Resuelto" class="btn btn-success" th:field="*{id}">
+                                <input type="hidden" name="id" th:value="${complain.id}">
+                                <input type="submit" value="Resuelto" class="btn btn-success">
                             </form>
                         </span>
                         <span  th:unless="${complain.solved}">
                             <form th:action="@{/complain/switch}" method="POST" th:object="${complain}">
-                                <input type="submit" name="id" value="Pendiente" class="btn btn-danger" th:field="*{id}">
+                                <input type="hidden" name="id" th:value="${complain.id}">
+                                <input type="submit" value="Pendiente" class="btn btn-danger">
                             </form>
                         </span>
                     </td>
