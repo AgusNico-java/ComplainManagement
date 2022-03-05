@@ -56,7 +56,6 @@
                     <td th:text = "${complain.productBatch}"></td>
                     <td>
                         <span  th:if="${complain.solved}">
-                            <span  th:if="${complain.solved}">
                             <form th:action="@{/complain/switch}" method="POST" th:object="${complain}">
                                 <input type="hidden" name="id" th:value="${complain.id}">
                                 <input type="submit" value="Resuelto" class="btn btn-success">
@@ -64,10 +63,9 @@
                         </span>
                         <span  th:unless="${complain.solved}">
                             <form th:action="@{/complain/switch}" method="POST" th:object="${complain}">
-                                <input type="hidden" th:value="${complain.id}">
+                                <input type="hidden" name="id" th:value="${complain.id}">
                                 <input type="submit" value="Pendiente" class="btn btn-danger">
                             </form>
-                        </span>
                         </span>
                     </td>
                 </tr>
