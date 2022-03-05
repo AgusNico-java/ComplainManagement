@@ -83,20 +83,4 @@ public class ComplainController {
         model.addAttribute("complains", complains);
         return "complains/list";
     }
-
-    /**
-     * Método que cambia el valor del parámetro solved.
-     *
-     * @param complain
-     * @return
-     */
-    /**
-    @RequestMapping(value = "/switch", method = RequestMethod.POST)
-        public String switchSolved(@ModelAttribute Complain complain) {
-        
-            System.out.println(complain.getId());
-            
-        return "redirect:/complain/list";
-    }
-    */
 }
