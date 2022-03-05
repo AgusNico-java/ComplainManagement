@@ -64,7 +64,7 @@
                         <span  th:unless="${complain.solved}">
                             <form th:action="@{/complain/switch}" method="POST" th:object="${complain}">
                                 <input type="hidden" name="id" th:value="{complain.id}">
-                                <input type="submit" name="id" value="Pendiente" class="btn btn-danger">
+                                <input type="submit" value="Pendiente" class="btn btn-danger">
                             </form>
                         </span>
                     </td>
