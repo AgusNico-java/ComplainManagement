@@ -60,8 +60,6 @@ public class ComplainController {
         
         Complain complain = useCService.oneComplain(id);
         
-        System.out.println(complain.getSolved());
-        
         if (complain.getSolved() || complain.getSolved() == null) {
             complain.setSolved(Boolean.FALSE);
         } else {
