@@ -6,7 +6,6 @@ import com.Complain.Management.exceptions.ComplainException;
 import com.Complain.Management.repositories.ComplainRepository;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,20 +19,6 @@ public class ComplainService {
     public ComplainService(ComplainRepository useCRepository) {
         this.useCRepository = useCRepository;
     }
-    
-    /**
-     * Toma los datos desde un formulario y los guarda en la base de datos, creando una
-     * entrada nueva si se está creando un reclamo o modificando los datos correspondientes
-     * en caso de que se estén cambiando los datos de un reclamo existente.
-     * 
-     * @param consumerName
-     * @param phoneNumber
-     * @param consumerMail
-     * @param productName
-     * @param productBatch
-     * @param bestBeforeDate 
-     */
-    
     
     /**
      * Guarda un reclamo en la base de datos
@@ -56,6 +41,7 @@ public class ComplainService {
     
     /**
      * Se encarga de generar una lista de reclamos a mostrarse en el navegador
+     * @return 
      */
     @Transactional
     public List<Complain> complainList(){
@@ -100,6 +86,4 @@ public class ComplainService {
         
         return complainCode;
     }
-    
-    
 }

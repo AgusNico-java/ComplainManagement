@@ -89,6 +89,4 @@ public class Complain {
     public void setProductBatch(Integer productBatch) {
         this.productBatch = productBatch;
     }
-    
-    
 }
