@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Nico
  */        
 @Controller
-@RequestMapping("")
+@RequestMapping("/home")
 public class HomeController {
+    
+    @RequestMapping (value=".../", method = RequestMethod.GET)
+    public String home (){
+        return "redirect: /home";
+    }
     
     @RequestMapping (method = RequestMethod.GET)
     public String homePage (){

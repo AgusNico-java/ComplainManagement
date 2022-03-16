@@ -15,8 +15,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
-    @Autowired //usa el servicio donde se implementa el userDetailService, en este caso el del usuario.
+    //usa el servicio donde se implementa el userDetailService, en este caso el del usuario.
     public UserService userService;
+    
+    @Autowired
+    public SecurityConfig (UserService userService){
+        this.userService = userService;
+    }
     
     @Autowired
     public void configureGlobal (AuthenticationManagerBuilder auth) throws Exception{
@@ -35,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/complain")
+                .defaultSuccessUrl("/complain/list")
                 .failureUrl("/login?error=error").permitAll()
                 .and()
                 .logout()

@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -85,9 +84,11 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         
-        User user = userRepository.findByMail(email);
+        User user = userRepository.findByEmail(email);
+        System.out.println(user.getDni());
         if (user == null) {
-            return null;
+            //return null;
+            throw new UsernameNotFoundException("Email no encontrado");
         }
         List <GrantedAuthority> permissions = new ArrayList<>();
         GrantedAuthority rolePermissions = new SimpleGrantedAuthority ("ROLE_" + user.getRole().toString());
