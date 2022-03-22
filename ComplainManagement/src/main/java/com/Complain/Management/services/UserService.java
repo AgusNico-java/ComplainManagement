@@ -86,14 +86,16 @@ public class UserService implements UserDetailsService{
         
         User user = userRepository.findByEmail(email);
         System.out.println(user.getDni());
-        if (user == null) {
-            //return null;
-            throw new UsernameNotFoundException("Email no encontrado");
-        }
+        if (user != null) {
+            
         List <GrantedAuthority> permissions = new ArrayList<>();
         GrantedAuthority rolePermissions = new SimpleGrantedAuthority ("ROLE_" + user.getRole().toString());
+        System.out.println(rolePermissions.toString());
         permissions.add(rolePermissions);
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), permissions);
+        } else {
+            throw new UsernameNotFoundException("Email no encontrado");
+        }
     }
     
 }

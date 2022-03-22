@@ -31,10 +31,14 @@
                         </li>
                     </ul>
 
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <form sec:Authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" th:action = "@{/logout}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar Sesión</button>
                     </form>
+
+                    <div sec:Authorize="!isAuthenticated()">
+                        <a href="/login/register"><button type="button" class="btn btn-primary">Registrate</button></a>
+                        <a href="login/"><button type="button" class="btn btn-secondary">Inicia sesión</button></a>
+                    </div>
                 </div>
             </nav>
         </div>

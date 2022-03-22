@@ -32,7 +32,7 @@ public class LoginController {
         if (error!=null) {
             model.put("Error", "El e-mail o la contraseña son inválidos");
         }
-        return "redirect:/complain/list";
+        return "users/login";
     }
     
     @RequestMapping (value="/register", method = RequestMethod.GET)
@@ -44,6 +44,6 @@ public class LoginController {
     @RequestMapping (value="/register", method = RequestMethod.POST)
     public String signUpForm (@ModelAttribute User user){
         userService.saveUser(user);
-        return "index";
+        return "redirect:/complain/list";
     }
 }

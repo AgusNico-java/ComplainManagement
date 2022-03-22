@@ -4,6 +4,7 @@ import com.Complain.Management.entities.Complain;
 import com.Complain.Management.services.ComplainService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 //Controlador de prueba para dirigir a la página de inicio
 @Controller
 @RequestMapping("/complain")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 public class ComplainController {
 
     private ComplainService useCService;
